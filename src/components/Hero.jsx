@@ -1,0 +1,109 @@
+import React from 'react'
+import styled from 'styled-components'
+
+function Hero() {
+    return (
+        <HeroSection>
+            <HeroContent>
+                <MainHeading>
+                    Experience Unmatched Algorithm Visualization With Lightning-Fast Processing
+                </MainHeading>
+                <Description>
+                    Empower your learning with our interactive algorithm visualizer, delivering precise step-by-step execution and rapid processing to elevate your understanding
+                </Description>
+                <CTAButtons>
+                    <PrimaryCTA>Start Visualizing</PrimaryCTA>
+                    
+                </CTAButtons>
+                
+               <div> <Img src="/img1.jfif" alt="hero" /></div>
+            </HeroContent>
+        </HeroSection>
+    )
+}
+
+const HeroSection = styled.section`
+    min-height: 100vh;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px 40px;
+    position: relative;
+    z-index: 2;
+`
+
+const HeroContent = styled.div`
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+`
+
+const MainHeading = styled.h1`
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+`
+
+const Description = styled.p`
+    font-size: clamp(1rem, 2vw, 1rem);
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
+`
+
+const CTAButtons = styled.div`
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 80px;
+    flex-wrap: wrap;
+`
+
+const PrimaryCTA = styled.button`
+    background: #ffffff;
+    color: #000000;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    
+    &:hover {
+        transform: translateY(-2px);
+    }
+`
+
+const SecondaryCTA = styled.button`
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &:hover {
+        background: rgba(255,255,255,0.1);
+    }
+`
+
+const Img = styled.img`
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+`
+
+
+
+export default Hero

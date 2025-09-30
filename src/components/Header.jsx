@@ -11,13 +11,13 @@ function Header() {
                 </Logo>
                 <Nav>
                   
-                    <NavItem><Anchor href="#visualizer">Visualizer</Anchor></NavItem>
-                    <NavItem><Anchor href="#codeviewer">Code Viewer</Anchor></NavItem>                 
-                    <NavItem><Anchor href="#about">About</Anchor></NavItem>
+                    <NavItem><Anchor href="#">Visualizer</Anchor></NavItem>
+                    <NavItem><Anchor href="#">Code Viewer</Anchor></NavItem>                 
+                    <NavItem><Anchor href="#">About</Anchor></NavItem>
                 </Nav>
                 <Actions>
-                    <SecondaryButton as="a" href="#signin">Sign In</SecondaryButton>
-                    <PrimaryButton as="a" href="#get-started">Get Started</PrimaryButton>
+                    <SecondaryButton as="a" href="#">Sign In</SecondaryButton>
+                    <PrimaryButton as="a" href="#">Get Started</PrimaryButton>
                 </Actions>
             </HeaderInner>
         </HeaderBar>
@@ -30,11 +30,7 @@ const HeaderBar = styled.header`
     position: sticky;
     top: 0;
     z-index: 10;
-    
-    
-  
-
-   
+    background: transparent;
 `
 
 const HeaderInner = styled.div`
