@@ -13,7 +13,7 @@ function Hero() {
                     Empower your learning with our interactive algorithm visualizer, delivering precise step-by-step execution and rapid processing to elevate your understanding
                 </Description>
                 <CTAButtons>
-                    <PrimaryLink to="/visualizer">Start Visualizing</PrimaryLink>
+                    <PrimaryLink to="/SearchVisualizer">Start Visualizing</PrimaryLink>
                 </CTAButtons>
                 
                <div> <Img src="/img1.jfif" alt="hero" /></div>

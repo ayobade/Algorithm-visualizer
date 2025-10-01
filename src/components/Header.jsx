@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 function Header() {
+    const [open, setOpen] = useState(false)
     return (
         <HeaderBar>
             <HeaderInner>
@@ -12,7 +13,7 @@ function Header() {
                 </LogoLink>
                 <Nav>
                   
-                    <NavItem><Anchor href="/visualizer">Visualizer</Anchor></NavItem>
+                    <NavItem><Anchor href="/SearchVisualizer">Visualizer</Anchor></NavItem>
                     <NavItem><Anchor href="#">Code Viewer</Anchor></NavItem>                 
                     <NavItem><Anchor href="#">About</Anchor></NavItem>
                 </Nav>
@@ -20,7 +21,23 @@ function Header() {
                     <SecondaryButton as="a" href="#">Sign In</SecondaryButton>
                     <PrimaryButton as="a" href="#">Get Started</PrimaryButton>
                 </Actions>
+                <Hamburger onClick={()=>setOpen(v=>!v)} aria-label="menu">
+                    <Bar />
+                    <Bar />
+                    <Bar />
+                </Hamburger>
             </HeaderInner>
+            {open && (
+                <MobileMenu>
+                    <a href="/SearchVisualizer" onClick={()=>setOpen(false)}>Visualizer</a>
+                    <a href="#" onClick={()=>setOpen(false)}>Code Viewer</a>
+                    <a href="#" onClick={()=>setOpen(false)}>About</a>
+                    <div className="actions">
+                        <a className="ghost" href="#" onClick={()=>setOpen(false)}>Sign In</a>
+                        <a className="solid" href="#" onClick={()=>setOpen(false)}>Get Started</a>
+                    </div>
+                </MobileMenu>
+            )}
         </HeaderBar>
     )
 }
@@ -82,6 +99,7 @@ const Nav = styled.ul`
     align-items: center;
     flex: 1;
     justify-content: center;
+    @media (max-width: 760px) { display: none; }
 `
 
 const NavItem = styled.li`
@@ -106,6 +124,7 @@ const Actions = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
+    @media (max-width: 760px) { display: none; }
 `
 
 const BaseButton = styled.button`
@@ -126,6 +145,39 @@ const PrimaryButton = styled(BaseButton)`
     color: #0b0b0b;
     border-color: #ffffff;
     text-decoration: none;
+`
+
+const Hamburger = styled.button`
+    display: none;
+    @media (max-width: 760px) { display: inline-flex; }
+    flex-direction: column;
+    gap: 4px;
+    background: transparent;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    margin-left: 8px;
+`
+
+const Bar = styled.span`
+    width: 20px;
+    height: 2px;
+    background: #ffffff;
+    display: block;
+    border-radius: 2px;
+`
+
+const MobileMenu = styled.div`
+    display: none;
+    @media (max-width: 760px) { display: block; }
+    background: rgba(0,0,0,0.6);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    padding: 12px 16px;
+    a { display: block; color: #fff; text-decoration: none; padding: 10px 0; }
+    .actions { display: flex; gap: 10px; margin-top: 8px; }
+    .ghost { border: 1px solid rgba(255,255,255,0.35); padding: 8px 12px; border-radius: 9999px; }
+    .solid { background: #ffffff; color: #0b0b0b; padding: 8px 12px; border-radius: 9999px; }
 `
 
 export default Header

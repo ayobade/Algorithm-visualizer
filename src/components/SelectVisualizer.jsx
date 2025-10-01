@@ -85,7 +85,11 @@ function SelectVisualizer() {
                                 {alg.items.map((t) => (<li key={t}>{t}</li>))}
                             </CardList>
                             <ActionsRow>
-                                {alg.active ? (<PrimaryLink to="/visualizer">Open</PrimaryLink>) : (<GhostDisabled as="button" disabled>Coming soon</GhostDisabled>)}
+                                {alg.active ? (
+                                    <PrimaryLink to="/Visualizer" state={{ title: alg.title }}>Open</PrimaryLink>
+                                ) : (
+                                    <GhostDisabled as="button" disabled>Coming soon</GhostDisabled>
+                                )}
                             </ActionsRow>
                         </Card>
                     ))}
