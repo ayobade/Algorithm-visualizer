@@ -10,6 +10,11 @@ body {
   position: relative;
 }
 
+#root {
+  position: relative;
+  z-index: 1;
+}
+
 body::before {
   content: '';
   position: fixed;
@@ -17,9 +22,10 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(ellipse 120% 80% at 50% 0%, rgba(255, 107, 53, 0.4) 0%, rgba(255, 107, 53, 0.2) 30%, rgba(247, 147, 30, 0.1) 60%, transparent 100%);
+  background:
+    radial-gradient(ellipse 120% 70% at 50% -10%, rgba(255, 159, 64, 0.35) 0%, rgba(255, 120, 48, 0.22) 35%, rgba(247, 147, 30, 0.10) 60%, rgba(0,0,0,0) 100%);
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
 }
 
 body::after {
@@ -29,9 +35,29 @@ body::after {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(ellipse 100% 60% at 50% 0%, rgba(255, 107, 53, 0.2) 0%, rgba(255, 107, 53, 0.1) 40%, transparent 80%);
+  background:
+    radial-gradient(420px 320px at 20% 12%, rgba(255, 166, 77, 0.12) 0%, rgba(255, 166, 77, 0.03) 60%, transparent 100%),
+    radial-gradient(340px 260px at 82% 10%, rgba(255, 120, 48, 0.10) 0%, rgba(255, 120, 48, 0.03) 65%, transparent 100%),
+    radial-gradient(520px 380px at 70% 70%, rgba(255, 159, 64, 0.06) 0%, rgba(255, 159, 64, 0.02) 70%, transparent 100%),
+    linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.65) 100%),
+    linear-gradient(rgba(255,255,255,0.018) 1px, rgba(0,0,0,0) 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, rgba(0,0,0,0) 1px);
+  background-size:
+    auto,
+    auto,
+    auto,
+    auto,
+    72px 72px,
+    72px 72px;
+  background-position:
+    center,
+    center,
+    center,
+    center,
+    top left,
+    top left;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
 }
 
 a { color: inherit; }

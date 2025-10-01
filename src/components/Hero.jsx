@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 function Hero() {
     return (
@@ -12,8 +13,7 @@ function Hero() {
                     Empower your learning with our interactive algorithm visualizer, delivering precise step-by-step execution and rapid processing to elevate your understanding
                 </Description>
                 <CTAButtons>
-                    <PrimaryCTA>Start Visualizing</PrimaryCTA>
-                    
+                    <PrimaryLink to="/visualizer">Start Visualizing</PrimaryLink>
                 </CTAButtons>
                 
                <div> <Img src="/img1.jfif" alt="hero" /></div>
@@ -81,6 +81,10 @@ const PrimaryCTA = styled.button`
         transform: translateY(-2px);
     }
 `
+
+const PrimaryLink = styled(Link)
+    .attrs({})
+    `${PrimaryCTA}`
 
 const SecondaryCTA = styled.button`
     background: transparent;

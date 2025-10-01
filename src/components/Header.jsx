@@ -1,17 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 function Header() {
     return (
         <HeaderBar>
             <HeaderInner>
-                <Logo>
+                <LogoLink to="/">
                     <LogoImg src="/AlgoLogo.png" alt="logo" />
                     <LogoText>AlgoVisualizer</LogoText>
-                </Logo>
+                </LogoLink>
                 <Nav>
                   
-                    <NavItem><Anchor href="#">Visualizer</Anchor></NavItem>
+                    <NavItem><Anchor href="/visualizer">Visualizer</Anchor></NavItem>
                     <NavItem><Anchor href="#">Code Viewer</Anchor></NavItem>                 
                     <NavItem><Anchor href="#">About</Anchor></NavItem>
                 </Nav>
@@ -48,6 +49,14 @@ const Logo = styled.div`
     display: flex;
     align-items: center;
     gap: 4px;
+`
+
+const LogoLink = styled(Link)`
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: inherit;
 `
 
 const LogoImg = styled.img`
