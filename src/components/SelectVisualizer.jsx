@@ -10,25 +10,25 @@ function SelectVisualizer() {
         Sorting: [
             { title: 'Bubble Sort', level: 'Beginner', items: ['Compare neighbors and swap'], active: true },
             { title: 'Selection Sort', level: 'Beginner', items: ['Pick the smallest each time'], active: true },
-            { title: 'Insertion Sort', level: 'Beginner', items: ['Insert into the right spot'], active: true },
-            { title: 'Merge Sort', level: 'Intermediate', items: ['Split in half, then merge'], active: true },
-            { title: 'Quick Sort', level: 'Intermediate', items: ['Pick a pivot and divide'], active: true },
-            { title: 'Heap Sort', level: 'Advanced', items: ['Use a tree-like heap to sort'], active: true },
-            { title: 'Counting / Radix', level: 'Intermediate', items: ['Group by values or digits'], active: true },
+            { title: 'Insertion Sort', level: 'Beginner', items: ['Insert into the right spot'], active: false },
+            { title: 'Merge Sort', level: 'Intermediate', items: ['Split in half, then merge'], active: false },
+            { title: 'Quick Sort', level: 'Intermediate', items: ['Pick a pivot and divide'], active: false },
+            { title: 'Heap Sort', level: 'Advanced', items: ['Use a tree-like heap to sort'], active: false },
+            { title: 'Counting / Radix', level: 'Intermediate', items: ['Group by values or digits'], active: false },
           ],
           
           Searching: [
-            { title: 'Linear Search', level: 'Beginner', items: ['Check each element one by one'], active: true },
-            { title: 'Binary Search', level: 'Beginner', items: ['Cut the list in half each time'], active: true },
-            { title: 'Jump / Interpolation', level: 'Intermediate', items: ['Skip ahead or guess position'], active: true },
+            { title: 'Linear Search', level: 'Beginner', items: ['Check each element one by one'], active: false },
+            { title: 'Binary Search', level: 'Beginner', items: ['Cut the list in half each time'], active: false },
+            { title: 'Jump / Interpolation', level: 'Intermediate', items: ['Skip ahead or guess position'], active: false },
           ],
           
           Graphs: [
-            { title: 'BFS', level: 'Beginner', items: ['Explore layer by layer'], active: true },
-            { title: 'DFS', level: 'Beginner', items: ['Go deep before backtracking'], active: true },
-            { title: 'Dijkstra', level: 'Intermediate', items: ['Find shortest weighted path'], active: true },
-            { title: 'A*', level: 'Advanced', items: ['Smart pathfinding with guesses'], active: true },
-            { title: 'MST (Kruskal / Prim)', level: 'Intermediate', items: ['Connect all nodes with smallest total weight'], active: true },
+            { title: 'BFS', level: 'Beginner', items: ['Explore layer by layer'], active: false },
+            { title: 'DFS', level: 'Beginner', items: ['Go deep before backtracking'], active: false },
+            { title: 'Dijkstra', level: 'Intermediate', items: ['Find shortest weighted path'], active: false },
+            { title: 'A*', level: 'Advanced', items: ['Smart pathfinding with guesses'], active: false },
+            { title: 'MST (Kruskal / Prim)', level: 'Intermediate', items: ['Connect all nodes with smallest total weight'], active: false },
           ],
           
           DP: [

@@ -1,5 +1,6 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
+import { algorithms } from '../components/data/algorithim'
 import HowVisualizerWorks from '../components/HowVisualizerWorks'
 import Visual from '../components/Visual'
 import CodeViewer from '../components/CodeViewer'
@@ -9,19 +10,28 @@ import styled from 'styled-components'
 
 function Visualizer() {
     const location = useLocation()
-    const title = location?.state?.title || 'Visualizer'
+    const { id } = useParams()
+    const passedTitle = location?.state?.title
+    const flatList = Object.values(algorithms).flat()
+    const algo = id ? flatList.find(a => a.id === id) : flatList.find(a => a.title === passedTitle)
+    const title = algo?.title || passedTitle || 'Visualizer'
     return (
         <div>
             <Header />
             <Grid>
                 <Pane>
                     <HowVisualizerWorks title={title} />
+                    {algo?.howItWorks && (
+                        <ul>
+                            {algo.howItWorks.map((s,i)=> (<li key={i}>{s}</li>))}
+                        </ul>
+                    )}
                 </Pane>
                 <Pane>
                     <Visual title={title} />
                 </Pane>
                 <Pane>
-                    <CodeViewer title={title} />
+                    <CodeViewer title={title} code={algo?.code} />
                 </Pane>
             </Grid>
             <Footer />
@@ -33,7 +43,7 @@ const Grid = styled.section`
     display: grid;
     gap: 16px;
     padding: 24px;
-    grid-template-columns: 1.2fr 1.4fr 1.2fr;
+    grid-template-columns: .6fr 1.4fr .6fr;
     align-items: start;
     @media (max-width: 1200px) {
         grid-template-columns: 1fr;
