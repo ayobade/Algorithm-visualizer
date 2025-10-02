@@ -1,63 +1,42 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 
-function SelectionSort({ title }) {
+function LinearSearch({ title }) {
     const [speed, setSpeed] = useState(1)
     const [input, setInput] = useState('')
+    const [target, setTarget] = useState('')
     const [array, setArray] = useState([])
     const [comparisons, setComparisons] = useState(0)
-    const [swaps, setSwaps] = useState(0)
-    const [isSorting, setIsSorting] = useState(false)
-    const [iIndex, setIIndex] = useState(-1)
-    const [jIndex, setJIndex] = useState(-1)
-    const [minIndex, setMinIndex] = useState(-1)
-    const [swapPair, setSwapPair] = useState([-1, -1])
-    const [flashPair, setFlashPair] = useState([-1, -1])
-    const [sortedLeftEnd, setSortedLeftEnd] = useState(-1)
+    const [isSearching, setIsSearching] = useState(false)
+    const [searchFinished, setSearchFinished] = useState(false)
+    const [index, setIndex] = useState(-1)
+    const [foundIndex, setFoundIndex] = useState(-1)
+    const [flashOk, setFlashOk] = useState(-1)
     const speedRef = useRef(1)
-    const sortingRef = useRef(false)
+    const searchingRef = useRef(false)
     useEffect(()=>{ speedRef.current = speed },[speed])
 
-    const selectionSort = async () => {
-        const arr = array.slice()
-        for (let i = 0; i < arr.length; i++) {
-            if (!sortingRef.current) return
-            setIIndex(i)
-            let minIdx = i
-            setMinIndex(i)
-            for (let j = i + 1; j < arr.length; j++) {
-                if (!sortingRef.current) return
-                setJIndex(j)
-                setComparisons(c=>c+1)
-                const delay = Math.max(50, 600 / speedRef.current)
-                await sleep(delay)
-                if (arr[j] < arr[minIdx]) {
-                    setMinIndex(j)
-                    await sleep(Math.max(40, 360 / speedRef.current))
-                    minIdx = j
-                } else {
-                    setFlashPair([j, minIdx])
-                    await sleep(Math.max(40, 360 / speedRef.current))
-                    setFlashPair([-1, -1])
-                }
+    const runSearch = async () => {
+        setComparisons(0)
+        setFoundIndex(-1)
+        setSearchFinished(false)
+        for (let i = 0; i < array.length; i++) {
+            if (!searchingRef.current) return
+            setIndex(i)
+            setComparisons(c=>c+1)
+            const delay = Math.max(50, 600 / speedRef.current)
+            await sleep(delay)
+            if (String(array[i]) === target.trim()) {
+                setFoundIndex(i)
+                setFlashOk(i)
+                await sleep(Math.max(120, 600 / speedRef.current))
+                setFlashOk(-1)
+                break
             }
-            if (!sortingRef.current) return
-            if (minIdx !== i) {
-                setSwapPair([i, minIdx])
-                await sleep(Math.max(80, 500 / speedRef.current))
-                const tmp = arr[i]; arr[i] = arr[minIdx]; arr[minIdx] = tmp
-                setArray(arr.slice())
-                setSwaps(s=>s+1)
-                await sleep(Math.max(80, 500 / speedRef.current))
-                setSwapPair([-1,-1])
-            } else {
-                setFlashPair([i, minIdx])
-                await sleep(Math.max(40, 360 / speedRef.current))
-                setFlashPair([-1,-1])
-            }
-            setSortedLeftEnd(i)
         }
-        setIIndex(-1); setJIndex(-1); setMinIndex(-1)
+        setIndex(-1)
+        setIsSearching(false); searchingRef.current = false
+        setSearchFinished(true)
     }
 
     return (
@@ -65,48 +44,44 @@ function SelectionSort({ title }) {
             <Title>{title} Visualization</Title>
             <Panel>
                 <Row $two>
-                    <PrimaryButton disabled={isSorting} onClick={()=>{
-                        const len = 8
+                    <PrimaryButton disabled={isSearching} onClick={()=>{
+                        const len = 10
                         const rand = Array.from({length: len}, ()=> Math.floor(Math.random()*90)+10)
                         setInput(rand.join(', '))
                         setArray(rand)
                         setComparisons(0)
-                        setSwaps(0)
-                        setIIndex(-1); setJIndex(-1); setMinIndex(-1)
-                        setSortedLeftEnd(-1)
+                        setIndex(-1)
+                        setFoundIndex(-1)
                     }}>Generate Random Array</PrimaryButton>
-                    <SuccessButton disabled={isSorting || array.length===0} onClick={async()=>{
-                        if (isSorting || array.length===0) return
-                        setIsSorting(true); sortingRef.current = true
-                        setComparisons(0); setSwaps(0)
-                        setIIndex(-1); setJIndex(-1); setMinIndex(-1)
-                        await selectionSort()
-                        setIsSorting(false); sortingRef.current = false
+                    <SuccessButton disabled={isSearching || array.length===0 || !target.trim()} onClick={()=>{
+                        if (isSearching || array.length===0 || !target.trim()) return
+                        setIsSearching(true); searchingRef.current = true
+                        runSearch()
                     }}>Start {title}</SuccessButton>
                 </Row>
                 <Row>
                     <Input value={input} onChange={(e)=>setInput(e.target.value)} placeholder="Example: 5, 3, 8, 1, 2" />
-                    <DarkButton disabled={!input.trim() || isSorting} onClick={()=>{
+                    <DarkButton disabled={!input.trim() || isSearching} onClick={()=>{
                         const parsed = input
                           .split(',')
                           .map(s=>s.trim())
-                          .filter(s=>s!=='' && !Number.isNaN(Number(s)))
+                          .filter(s=>s!=='')
                           .map(Number)
                         setArray(parsed)
-                        setSortedLeftEnd(-1)
+                        setIndex(-1); setFoundIndex(-1); setSearchFinished(false)
                     }}>Use Array</DarkButton>
+                    <Input value={target} onChange={(e)=>setTarget(e.target.value)} placeholder="Target value" />
                     <DangerButton onClick={()=>{
-                        sortingRef.current = false
-                        setIsSorting(false)
-                        setIIndex(-1); setJIndex(-1); setMinIndex(-1)
+                        searchingRef.current = false
+                        setIsSearching(false)
+                        setIndex(-1)
+                        setFoundIndex(-1)
                         setComparisons(0)
-                        setSwaps(0)
                         setArray([])
                         setInput('')
-                        setSortedLeftEnd(-1)
-                        setSwapPair([-1,-1])
-                        setFlashPair([-1,-1])
-                    }}>Reset All</DangerButton>
+                        setTarget('')
+                        setSearchFinished(false)
+                    }}>Reset</DangerButton>
                 </Row>
                 <Row $align="center">
                     <Label>Speed:</Label>
@@ -115,21 +90,18 @@ function SelectionSort({ title }) {
                 </Row>
                 <VisualArea>
                     <Meta>
-                        <Badge>Comparisons: {comparisons}</Badge>
-                        <Badge>Swaps: {swaps}</Badge>
+                        <Badge>Checks: {comparisons}</Badge>
+                        {foundIndex >= 0 && <Badge>Found at index {foundIndex}</Badge>}
+                        {searchFinished && foundIndex < 0 && <Badge $danger>Not found</Badge>}
                     </Meta>
                     <Canvas>
                         {array.length > 0 ? (
                             <BoxesArea>
-                                {array.map((value, index) => (
-                                    <Box
-                                        key={`${index}-${value}`}
-                                        $active={index===iIndex || index===jIndex}
-                                        $min={index===minIndex}
-                                        $swapLeft={swapPair[0]===index}
-                                        $swapRight={swapPair[1]===index}
-                                        $flash={flashPair.includes(index)}
-                                        $final={index <= sortedLeftEnd}
+                                {array.map((value, i) => (
+                                    <Box key={`${i}-${value}`}
+                                         $active={index===i}
+                                         $ok={flashOk===i}
+                                         $found={foundIndex===i}
                                     >{value}</Box>
                                 ))}
                             </BoxesArea>
@@ -138,17 +110,12 @@ function SelectionSort({ title }) {
                         )}
                     </Canvas>
                 </VisualArea>
-                {array.length > 0 && (
-                    <Preview>
-                        Current array: [{array.join(', ')}]
-                    </Preview>
-                )}
             </Panel>
         </div>
     )
 }
 
-export default SelectionSort
+export default LinearSearch
 
 async function sleep(ms){ return new Promise(r=>setTimeout(r, ms)) }
 
@@ -168,7 +135,7 @@ const Panel = styled.div`
 
 const Row = styled.div`
     display: grid;
-    grid-template-columns: ${({ $two, $align }) => $two ? '1fr 1fr' : ($align === 'center' ? 'auto 1fr auto' : '1fr 200px 1fr')};
+    grid-template-columns: ${({ $two, $align }) => $two ? '1fr 1fr' : ($align === 'center' ? 'auto 1fr auto' : '1fr auto 1fr')};
     gap: 12px;
     margin-bottom: 12px;
     align-items: center;
@@ -198,6 +165,7 @@ const SuccessButton = styled(ButtonBase)`
 
 const DangerButton = styled(ButtonBase)`
     background: #ef4444;
+    color: #ffffff;
 `
 
 const DarkButton = styled(ButtonBase)`
@@ -260,9 +228,9 @@ const Meta = styled.div`
 `
 
 const Badge = styled.span`
-    border: 1px solid rgba(255,255,255,0.18);
-    background: rgba(255,255,255,0.08);
-    color: #ffffff;
+    border: 1px solid ${({ $danger }) => ($danger ? 'rgba(239,68,68,0.45)' : 'rgba(255,255,255,0.18)')};
+    background: ${({ $danger }) => ($danger ? 'rgba(239,68,68,0.18)' : 'rgba(255,255,255,0.08)')};
+    color: ${({ $danger }) => ($danger ? '#fecaca' : '#ffffff')};
     padding: 6px 10px;
     border-radius: 9999px;
     font-size: 12px;
@@ -291,9 +259,7 @@ const BoxesArea = styled.div`
 
 const Box = styled.div`
     border: 1px solid rgba(255,255,255,0.18);
-    background: ${({ $final, $flash, $min }) => $final
-        ? 'rgba(0, 218, 145, 0.54)'
-        : ($flash ? 'rgba(16,185,129,0.25)' : ($min ? 'rgba(253, 186, 116, 0.35)' : 'rgba(255,255,255,0.08)'))};
+    background: ${({ $found, $ok }) => $found ? 'rgba(0, 218, 145, 0.54)' : ($ok ? 'rgba(16,185,129,0.25)' : 'rgba(255,255,255,0.08)')};
     color: #ffffff;
     border-radius: 10px;
     min-height: 52px;
@@ -305,8 +271,7 @@ const Box = styled.div`
     letter-spacing: 0.4px;
     outline: ${({ $active }) => $active ? '2px solid #f59e0b' : 'none'};
     box-shadow: ${({ $active }) => $active ? '0 0 0 2px rgba(245,158,11,0.2)' : 'none'};
-    transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1), background-color 160ms ease;
-    transform: ${({ $swapLeft, $swapRight }) => $swapLeft ? 'translateX(22px)' : ($swapRight ? 'translateX(-22px)' : 'translateX(0)')};
+    transition: background-color 160ms ease;
 `
 
 const Placeholder = styled.div`
@@ -319,9 +284,4 @@ const Placeholder = styled.div`
     height: 100%;
 `
 
-const Preview = styled.div`
-    margin-top: 8px;
-    color: rgba(229,231,235,0.9);
-`
 
- 

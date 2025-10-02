@@ -18,7 +18,7 @@ function SelectVisualizer() {
           ],
           
           Searching: [
-            { title: 'Linear Search', level: 'Beginner', items: ['Check each element one by one'], active: false },
+            { title: 'Linear Search', level: 'Beginner', items: ['Check each element one by one'], active: true },
             { title: 'Binary Search', level: 'Beginner', items: ['Cut the list in half each time'], active: false },
             { title: 'Jump / Interpolation', level: 'Intermediate', items: ['Skip ahead or guess position'], active: false },
           ],
@@ -70,7 +70,7 @@ function SelectVisualizer() {
 
                 <Cards>
                     {filtered.map((alg) => (
-                        <Card key={alg.title} dimmed={!alg.active}>
+                        <Card key={alg.title} $dimmed={!alg.active}>
                             <CardHeader>
                                 <IconCircle>
                                     {activeTab === 'Sorting' && (<BarsIcon viewBox="0 0 24 24"><path d="M5 3h2v18H5zM11 8h2v13h-2zM17 13h2v8h-2z"/></BarsIcon>)}
@@ -181,14 +181,14 @@ const Cards = styled.div`
 `
 
 const Card = styled.div`
-    background: ${({ dimmed }) => (dimmed ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.06)')};
+    background: ${({ $dimmed }) => ($dimmed ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.06)')};
     border: 1px solid rgba(255,255,255,0.12);
     border-radius: 14px;
     padding: 18px 18px 16px;
     display: flex;
     flex-direction: column;
     gap: 12px;
-    opacity: ${({ dimmed }) => (dimmed ? 0.65 : 1)};
+    opacity: ${({ $dimmed }) => ($dimmed ? 0.65 : 1)};
     box-shadow: 0 8px 28px rgba(245, 158, 11, 0.07), inset 0 0 0 1px rgba(255,255,255,0.02);
     backdrop-filter: blur(6px);
     text-align: left;
