@@ -64,7 +64,7 @@ function SelectionSort({ title }) {
         <div>
             <Title>{title} Visualization</Title>
             <Panel>
-                <Row $two>
+                <Row two>
                     <PrimaryButton disabled={isSorting} onClick={()=>{
                         const len = 8
                         const rand = Array.from({length: len}, ()=> Math.floor(Math.random()*90)+10)
@@ -108,7 +108,7 @@ function SelectionSort({ title }) {
                         setFlashPair([-1,-1])
                     }}>Reset All</DangerButton>
                 </Row>
-                <Row $align="center">
+                <Row align="center">
                     <Label>Speed:</Label>
                     <Slider type="range" min="1" max="5" step="1" value={speed} onChange={(e)=>setSpeed(Number(e.target.value))} />
                     <Multiplier>{speed}x</Multiplier>
@@ -168,7 +168,7 @@ const Panel = styled.div`
 
 const Row = styled.div`
     display: grid;
-    grid-template-columns: ${({ $two, $align }) => $two ? '1fr 1fr' : ($align === 'center' ? 'auto 1fr auto' : '1fr 200px 1fr')};
+    grid-template-columns: ${({ two, align }) => two ? '1fr 1fr' : (align === 'center' ? 'auto 1fr auto' : '1fr 200px 1fr')};
     gap: 12px;
     margin-bottom: 12px;
     align-items: center;

@@ -91,7 +91,7 @@ function LinearSearch({ title }) {
                 <VisualArea>
                     <Meta>
                         <Badge>Checks: {comparisons}</Badge>
-                        {foundIndex >= 0 && <Badge>Found at index {foundIndex}</Badge>}
+                        {foundIndex >= 0 && <Badge $success>Found at index {foundIndex}</Badge>}
                         {searchFinished && foundIndex < 0 && <Badge $danger>Not found</Badge>}
                     </Meta>
                     <Canvas>
@@ -228,9 +228,18 @@ const Meta = styled.div`
 `
 
 const Badge = styled.span`
-    border: 1px solid ${({ $danger }) => ($danger ? 'rgba(239,68,68,0.45)' : 'rgba(255,255,255,0.18)')};
-    background: ${({ $danger }) => ($danger ? 'rgba(239,68,68,0.18)' : 'rgba(255,255,255,0.08)')};
-    color: ${({ $danger }) => ($danger ? '#fecaca' : '#ffffff')};
+    border: 1px solid
+        ${({ $danger, $success }) => ($danger
+            ? 'rgba(239,68,68,0.45)'
+            : ($success ? 'rgba(16,185,129,0.45)' : 'rgba(255,255,255,0.18)'))};
+    background:
+        ${({ $danger, $success }) => ($danger
+            ? 'rgba(239,68,68,0.18)'
+            : ($success ? 'rgba(16,185,129,0.22)' : 'rgba(255,255,255,0.08)'))};
+    color:
+        ${({ $danger, $success }) => ($danger
+            ? '#fecaca'
+            : ($success ? '#bbf7d0' : '#ffffff'))};
     padding: 6px 10px;
     border-radius: 9999px;
     font-size: 12px;

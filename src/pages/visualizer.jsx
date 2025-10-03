@@ -23,7 +23,14 @@ function Visualizer() {
                     <HowVisualizerWorks title={title} />
                     {algo?.howItWorks && (
                         <ul>
+                            <strong>How it works</strong>
                             {algo.howItWorks.map((s,i)=> (<li key={i}>{s}</li>))}
+                        </ul>
+                    )}
+                    {algo?.uses && (
+                        <ul>
+                            <strong>Uses</strong>
+                            {algo.uses.map((s,i)=> (<li key={`use-${i}`}>{s}</li>))}
                         </ul>
                     )}
                 </Pane>

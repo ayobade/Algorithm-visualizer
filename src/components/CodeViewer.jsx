@@ -48,6 +48,11 @@ const HeaderRow = styled.div`
     align-items: center;
     justify-content: space-between;
     gap: 12px;
+    @media (max-width: 600px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
 `
 
 const Title = styled.h2`
@@ -70,6 +75,7 @@ const Tabs = styled.div`
     display: flex;
     gap: 10px;
     margin: 12px 0;
+    flex-wrap: wrap;
 `
 
 const Tab = styled.button`
@@ -88,5 +94,17 @@ const CodeBlock = styled.div`
     background: rgba(0,0,0,0.5);
     padding: 12px;
     overflow: auto;
-    pre { margin: 0; color: #e5e7eb; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 13px; line-height: 1.6; }
+    pre {
+        margin: 0;
+        color: #e5e7eb;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+        font-size: 13px;
+        line-height: 1.6;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+    @media (max-width: 480px) {
+        padding: 10px;
+        pre { font-size: 12px; }
+    }
 `

@@ -24,8 +24,8 @@ function SelectVisualizer() {
           ],
           
           Graphs: [
-            { title: 'BFS', level: 'Beginner', items: ['Explore layer by layer'], active: false },
-            { title: 'DFS', level: 'Beginner', items: ['Go deep before backtracking'], active: false },
+            { title: 'Breadth-First Search (BFS)', level: 'Beginner', items: ['Explore layer by layer'], active: true },
+            { title: 'Depth-First Search (DFS)', level: 'Beginner', items: ['Go deep before backtracking'], active: false },
             { title: 'Dijkstra', level: 'Intermediate', items: ['Find shortest weighted path'], active: false },
             { title: 'A*', level: 'Advanced', items: ['Smart pathfinding with guesses'], active: false },
             { title: 'MST (Kruskal / Prim)', level: 'Intermediate', items: ['Connect all nodes with smallest total weight'], active: false },
@@ -35,6 +35,40 @@ function SelectVisualizer() {
             { title: 'Fibonacci', level: 'Beginner', items: ['Build up from smaller results'], active: false },
             { title: 'LCS / Knapsack', level: 'Intermediate', items: ['Fill a grid to find answers'], active: false },
           ],
+
+          Crypto: [
+            { 
+              title: 'Caesar Cipher', 
+              level: 'Beginner', 
+              items: ['Shift letters by a key', 'Simple substitution'], 
+              active: true 
+            },
+            { 
+              title: 'Vigenère Cipher', 
+              level: 'Beginner', 
+              items: ['Keyword-based shifting', 'Polyalphabetic cipher'], 
+              active: true 
+            },
+            { 
+              title: 'Diffie–Hellman Key Exchange', 
+              level: 'Intermediate', 
+              items: ['Secure key sharing', 'Public + private secrets'], 
+              active: false 
+            },
+            { 
+              title: 'RSA Encryption', 
+              level: 'Intermediate', 
+              items: ['Public/private keys', 'Prime factorization'], 
+              active: false 
+            },
+            { 
+              title: 'Hash Functions (SHA-256)', 
+              level: 'Advanced', 
+              items: ['One-way mapping', 'Avalanche effect'], 
+              active: false 
+            }
+          ],
+          
           
     }), [])
 
@@ -63,7 +97,7 @@ function SelectVisualizer() {
                 </SearchBar>
 
                 <TabBar>
-                    {['Sorting', 'Searching', 'Graphs', 'DP'].map(tab => (
+                    {['Sorting', 'Searching', 'Graphs', 'DP', 'Crypto'].map(tab => (
                         <TabButton key={tab} $active={activeTab===tab} onClick={()=>setActiveTab(tab)}>{tab}</TabButton>
                     ))}
                 </TabBar>
@@ -77,6 +111,11 @@ function SelectVisualizer() {
                                     {activeTab === 'Searching' && (<SearchSvg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 0 0 1.57-4.23A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14Zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14Z"/></SearchSvg>)}
                                     {activeTab === 'Graphs' && (<PathIcon viewBox="0 0 24 24"><path d="M5 6a3 3 0 0 1 6 0v2h2a4 4 0 0 1 0 8H9v2a3 3 0 1 1-2 0v-4h6a2 2 0 0 0 0-4H9V6a3 3 0 0 1-4-0Z"/></PathIcon>)}
                                     {activeTab === 'DP' && (<GridIcon viewBox="0 0 24 24"><path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/></GridIcon>)}
+                                    {activeTab === 'Crypto' && (
+                                        <CryptoIcon viewBox="0 0 24 24">
+                                            <path d="M12 1a11 11 0 1 0 0 22 11 11 0 0 0 0-22Zm-2 10V9a2 2 0 1 1 4 0v2h1a1 1 0 0 1 1 1v5H8v-5a1 1 0 0 1 1-1h1Zm2-2a1 1 0 0 0-1 1v1h2V10a1 1 0 0 0-1-1Z"/>
+                                        </CryptoIcon>
+                                    )}
                                 </IconCircle>
                                 <CardTitle>{alg.title}</CardTitle>
                                 <Level $level={alg.level}>{alg.level==='Beginner'?'🟢':alg.level==='Intermediate'?'🟡':'🔴'} {alg.level}</Level>
@@ -225,6 +264,9 @@ const GridIcon = styled.svg`
     width: 18px; height: 18px; fill: currentColor;
 `
 const TextIcon = styled.svg`
+    width: 18px; height: 18px; fill: currentColor;
+`
+const CryptoIcon = styled.svg`
     width: 18px; height: 18px; fill: currentColor;
 `
 
