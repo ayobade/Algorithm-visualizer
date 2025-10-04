@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import SearchVisualizer from '../pages/SearchVisualizer'
 
 function Header() {
     const [open, setOpen] = useState(false)
@@ -14,12 +15,11 @@ function Header() {
                 <Nav>
                   
                     <NavItem><Anchor href="/SearchVisualizer">Visualizer</Anchor></NavItem>
-                    <NavItem><Anchor href="#">Code Viewer</Anchor></NavItem>                 
+                                    
                     <NavItem><Anchor href="#">About</Anchor></NavItem>
                 </Nav>
                 <Actions>
-                    <SecondaryButton as="a" href="#">Sign In</SecondaryButton>
-                    <PrimaryButton as="a" href="#">Get Started</PrimaryButton>
+                    <PrimaryButton as={Link} to="/SearchVisualizer">Get Started</PrimaryButton>
                 </Actions>
                 <Hamburger onClick={()=>setOpen(v=>!v)} aria-label="menu">
                     <Bar />
@@ -30,11 +30,10 @@ function Header() {
             {open && (
                 <MobileMenu>
                     <a href="/SearchVisualizer" onClick={()=>setOpen(false)}>Visualizer</a>
-                    <a href="#" onClick={()=>setOpen(false)}>Code Viewer</a>
+                   
                     <a href="#" onClick={()=>setOpen(false)}>About</a>
                     <div className="actions">
-                        <a className="ghost" href="#" onClick={()=>setOpen(false)}>Sign In</a>
-                        <a className="solid" href="#" onClick={()=>setOpen(false)}>Get Started</a>
+                        <Link className="solid" to="/SearchVisualizer" onClick={()=>setOpen(false)}>Get Started</Link>
                     </div>
                 </MobileMenu>
             )}

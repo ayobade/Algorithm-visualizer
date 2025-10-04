@@ -42,7 +42,7 @@ const HeroContent = styled.div`
 
 const MainHeading = styled.h1`
     font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1.2;
     margin-bottom: 24px;
     text-shadow: 0 2px 4px rgba(0,0,0,0.3);
@@ -66,7 +66,9 @@ const CTAButtons = styled.div`
     flex-wrap: wrap;
 `
 
-const PrimaryCTA = styled.button`
+
+
+const PrimaryLink = styled(Link)`
     background: #ffffff;
     color: #000000;
     border: none;
@@ -76,31 +78,15 @@ const PrimaryCTA = styled.button`
     font-weight: 600;
     cursor: pointer;
     transition: transform 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
     
     &:hover {
         transform: translateY(-2px);
     }
 `
 
-const PrimaryLink = styled(Link)
-    .attrs({})
-    `${PrimaryCTA}`
 
-const SecondaryCTA = styled.button`
-    background: transparent;
-    color: #ffffff;
-    border: 2px solid #ffffff;
-    padding: 14px 32px;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    
-    &:hover {
-        background: rgba(255,255,255,0.1);
-    }
-`
 
 const Img = styled.img`
     width: 100%;

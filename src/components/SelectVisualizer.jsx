@@ -47,7 +47,7 @@ function SelectVisualizer() {
               title: 'Vigenère Cipher', 
               level: 'Beginner', 
               items: ['Keyword-based shifting', 'Polyalphabetic cipher'], 
-              active: true 
+              active: false 
             },
             { 
               title: 'Diffie–Hellman Key Exchange', 
