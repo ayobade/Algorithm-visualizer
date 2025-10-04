@@ -1,0 +1,7 @@
+<!-- hackerrank-badge.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" role="img" aria-label="HackerRank">
+  <title>HackerRank (stylized)</title>
+  <rect x="4" y="4" width="32" height="32" rx="6" fill="#111" opacity="0.95"/>
+  <text x="20" y="26" font-family="Inter, Roboto, sans-serif" font-size="13" fill="#fff" text-anchor="middle" font-weight="700">HR</text>
+  <text x="50" y="26" font-family="Inter, Roboto, sans-serif" font-size="16" fill="#111">HackerRank</text>
+</svg>

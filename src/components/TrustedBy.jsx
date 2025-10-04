@@ -7,11 +7,11 @@ function TrustedBy() {
             <Inner>
                 <Caption>Trusted by leading companies.</Caption>
                 <Logos>
-                    <Logo>Vectra</Logo>
-                    <Logo>Optimal</Logo>
-                    <Logo>Grapho</Logo>
-                    <Logo>Dexign</Logo>
-                    <Logo>Signet</Logo>
+                    <Logo>Google</Logo>
+                    <Logo>GitHub</Logo>
+                    <Logo>HackerRank</Logo>
+                    <Logo>Stack Overflow</Logo>
+                    <Logo>Google</Logo>
                 </Logos>
             </Inner>
         </Section>
@@ -48,16 +48,16 @@ const Logos = styled.div`
     justify-items: center;
 
     @media (max-width: 768px) {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         row-gap: 18px;
     }
 `
 
 const Logo = styled.span`
-    color: rgba(229,231,235,0.85);
-    font-weight: 700;
+    color: #FFFFFF;
+    font-weight: 400;
     letter-spacing: 0.4px;
-    font-size: 18px;
+    font-size: 24px;
 `
 
 export default TrustedBy

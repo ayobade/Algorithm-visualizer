@@ -16,7 +16,7 @@ function Hero() {
                     <PrimaryLink to="/SearchVisualizer">Start Visualizing</PrimaryLink>
                 </CTAButtons>
                 
-               <div> <Img src="/img1.jfif" alt="hero" /></div>
+               <div> <Img src="/heroimg.png" alt="hero" /></div>
             </HeroContent>
         </HeroSection>
     )
@@ -46,6 +46,10 @@ const MainHeading = styled.h1`
     line-height: 1.2;
     margin-bottom: 24px;
     text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+
+    @media (max-width: 768px) {
+        font-size: clamp(2rem, 5vw, 3rem);
+    }
 `
 
 const Description = styled.p`
