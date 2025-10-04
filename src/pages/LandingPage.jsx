@@ -3,7 +3,7 @@ import Header from '../components/Header'
 import Hero from '../components/Hero'
 import TrustedBy from '../components/TrustedBy'
 import HowItWorks from '../components/HowItWorks'
-import Footer from '../components/footer'
+import Footer from '../components/Footer'
 
 function LandingPage() {
     return (

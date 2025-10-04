@@ -5,7 +5,7 @@ import HowVisualizerWorks from '../components/HowVisualizerWorks'
 import Visual from '../components/Visual'
 import CodeViewer from '../components/CodeViewer'
 import Header from '../components/Header'
-import Footer from '../components/footer'
+import Footer from '../components/Footer'
 import styled from 'styled-components'
 
 function Visualizer() {
