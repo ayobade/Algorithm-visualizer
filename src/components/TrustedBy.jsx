@@ -10,8 +10,9 @@ function TrustedBy() {
                     <Logo>Google</Logo>
                     <Logo>GitHub</Logo>
                     <Logo>HackerRank</Logo>
-                    <Logo>Stack Overflow</Logo>
                     <Logo>Google</Logo>
+                    <Logo>Stack Overflow</Logo>
+                   
                 </Logos>
             </Inner>
         </Section>
