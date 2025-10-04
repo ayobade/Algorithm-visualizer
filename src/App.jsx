@@ -1,5 +1,5 @@
 import React from 'react' 
-import LandingPage from './pages/landingpage'
+import LandingPage from './pages/Landingpage'
 import SearchVisualizer from './pages/SearchVisualizer'
 import Visualizer from './pages/visualizer'
 import { Routes, Route } from 'react-router-dom'
