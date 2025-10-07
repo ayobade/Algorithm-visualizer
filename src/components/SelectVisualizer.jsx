@@ -73,9 +73,9 @@ function SelectVisualizer() {
     }), [])
 
     const filtered = useMemo(() => {
-        const items = data[activeTab] || []
-        if (!query.trim()) return items
-        const q = query.toLowerCase()
+        const q = query.trim().toLowerCase()
+        const items = q ? Object.values(data).flat() : (data[activeTab] || [])
+        if (!q) return items
         return items.filter(x => x.title.toLowerCase().includes(q) || x.items.join(' ').toLowerCase().includes(q))
     }, [data, activeTab, query])
     return (
@@ -323,6 +323,10 @@ const TabBar = styled.div`
     display: flex;
     gap: 10px;
     justify-content: center;
+
+     @media (max-width: 640px) {
+        flex-wrap: wrap;
+    }
 `
 
 const TabButton = styled.button`
